@@ -1,0 +1,5 @@
+Command to transfer a file from one server to another : 
+
+scp -i ~/.ssh/[key_pair]/path/to/file/file_name nimit_493@35.197.207.123:~
+
+Here the key_pair would be the name of the private key file that we had generated : id_rsa for us
