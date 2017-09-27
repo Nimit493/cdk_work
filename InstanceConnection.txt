@@ -1,0 +1,42 @@
+To setup connections between two seperate instances, follow the following steps : 
+
+1. Initially, setup two seperate instances on your cloud. (Instance-1 and Instance-2)
+	On setting them up, you'll get the public IP of both of these.
+2. Install ansible on Instance-1, using the command "sudo apt-get install ansible". Press "y" when prompted.
+3. Post the installation, go to the root of the instance, using command "sudo su".
+	This will bring you to the directory like : root@instance-1:/home/[your_username]#
+	Do "cd .." twice to get to the central directory.
+4. Here, give command "ls" to check the contents of the root.
+5. Go into the folder "etc" using "cd etc" to go inside this folder.
+6. Then do an "ls" again to view the contents. Here you can see the folder "ansible".
+7. Go inside this folder ("cd ansible") to check the contents.
+8. Here you can see two files : one would be a config file, and other by the name "hosts".
+9. The "hosts" file is the inventory for our ansible.
+10. Open the file using the vi editor. Use the command "vi hosts".
+11. On opening this, you can see all commented out lines.
+12. Here, you have to add the IP address of the Instance-2.
+	To add, first enter the insertion mode by pressing "i".
+	Then take your cursor to any line and add the required IP address. Press "esc" and then "Shift+zz",
+	you will come back to the ansible folder structure
+13. After this, enter command "exit" to enter the user state again.
+14. Here enter the command : "ssh-keygen -t rsa"
+	A prompt will come to enter the filename where you want the key to be stored. Directly press enter,
+	it will get stored in the default location.
+	Then it will ask for a paraphrase, here enter any 5 characters. (You won't be able to see it, it's a secret :P)
+	It will be asked for again, enter it, and press enter.
+	Your key will get saved to the default location, and directory will be back to your user directory.
+15. Here, enter the command "cd .ssh/". This will change your directory to the .ssh
+16. Here three files will be present, check the file "id_rsa.pub". Just enter "cat id_rsa.pub".
+	You will be able to see the contents of this file, which is your public key.
+	Copy the complete key.
+17. Now go the to google cloud VM instances page in the browser. Here you can see both your instances.
+18. Click on "instance-2". This will open the VM instance details page.
+	Here, on scrolling down, you will be able to see one section for "ssh keys". Here there will be 
+	a prompt saying, you have one ssh key. Click on that and paste the key that we copied in step 16
+	Press enter and click save at the end of the page. (Let me know if you face some issue here)
+19. After this, go the "Instance-1" console, enter the command "ansible all -m ping".
+
+These steps will ensure connection from instance-1 to instance-2.
+
+
+
